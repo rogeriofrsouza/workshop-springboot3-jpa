@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rogeriofrsouza.course.entities.User;
 
 @RestController  // Indica que a classe é um recurso web, implementado por um controlador Rest
-@RequestMapping(value="/users")  // Nome e caminho do recurso 
+@RequestMapping(value = "/users")  // Nome e caminho do recurso 
 public class UserResource {
 
 	@GetMapping  // Responde a requisição GET do HTTP

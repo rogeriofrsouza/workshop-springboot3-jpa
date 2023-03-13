@@ -3,11 +3,21 @@ package com.rogeriofrsouza.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-// Serializable: permite que o objeto seja transformado em cadeias de bytes e trafegado na rede, gravado em arquivos, etc
+import jakarta.persistence.Entity;  // Preferência em importar a especificação (JPA) e não a implementação (Hibernate)
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_user")  // Especifica o nome da tabela do banco de dados
 public class User implements Serializable {
 
+	// Serializable: permite que o objeto seja transformado em cadeias de bytes e trafegado na rede, gravado em arquivos, etc
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	private String email;
