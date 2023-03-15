@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;  // Preferência em importar a especificação (JPA) e não a implementação (Hibernate)
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +28,7 @@ public class User implements Serializable {  // Permite que o objeto seja transf
 	private String phone;
 	private String password;
 	
+	@JsonIgnore  // Impede a associação de mão dupla (looping infinito)
 	@OneToMany(mappedBy = "client")  // Mapeamento opcional -> Acessa o objeto usuário e os seus pedidos. Necessita do nome do atributo do outro lado da associação
 	private List<Order> orders = new ArrayList<>();
 	
