@@ -1,19 +1,21 @@
 package com.rogeriofrsouza.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;  // Preferência em importar a especificação (JPA) e não a implementação (Hibernate)
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_user")  // Especifica o nome da tabela do banco de dados
-public class User implements Serializable {
-
-	// Serializable: permite que o objeto seja transformado em cadeias de bytes e trafegado na rede, gravado em arquivos, etc
+public class User implements Serializable {  // Permite que o objeto seja transformado em cadeias de bytes e trafegado na rede, gravado em arquivos, etc
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -24,7 +26,8 @@ public class User implements Serializable {
 	private String phone;
 	private String password;
 	
-	// Associations (instantiate collections)
+	@OneToMany(mappedBy = "client")  // Mapeamento opcional -> Acessa o objeto usuário e os seus pedidos. Necessita do nome do atributo do outro lado da associação
+	private List<Order> orders = new ArrayList<>();
 	
 	// Framework: necessita do construtor vazio
 	public User() {
@@ -76,6 +79,10 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public List<Order> getOrders() {
+		return orders;
 	}
 
 	@Override
