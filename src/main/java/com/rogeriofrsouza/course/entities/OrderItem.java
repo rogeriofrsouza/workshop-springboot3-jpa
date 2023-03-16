@@ -3,6 +3,7 @@ package com.rogeriofrsouza.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rogeriofrsouza.course.entities.pk.OrderItemPK;
 
 import jakarta.persistence.EmbeddedId;
@@ -15,8 +16,8 @@ public class OrderItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@EmbeddedId
-	private OrderItemPK id;  // Atributo identificador (chave primária composta)
+	@EmbeddedId  // Identifica uma chave primária composta, deve ser instanciada
+	private OrderItemPK id = new OrderItemPK();
 	
 	private Integer quantity;
 	private Double price;
@@ -32,6 +33,8 @@ public class OrderItem implements Serializable {
 	}
 	
 	// Métodos get() e set() da chave primária composta
+	
+	@JsonIgnore  // Java EE -> Corta a associação de mão dupla no pedido
 	public Order getOrder() {
 		return id.getOrder();
 	}
