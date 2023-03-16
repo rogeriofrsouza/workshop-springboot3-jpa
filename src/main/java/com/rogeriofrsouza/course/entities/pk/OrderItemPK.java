@@ -43,7 +43,7 @@ public class OrderItemPK implements Serializable {
 		this.product = product;
 	}
 
-	// Compara OrderItem por Order e Product pois os dois juntos identificam o item
+	// Compara por Order e Product pois os dois juntos identificam o item
 	@Override
 	public int hashCode() {
 		return Objects.hash(order, product);
