@@ -21,7 +21,7 @@ public enum OrderStatus {
 	
 	public static OrderStatus valueOf(int code) {
 		// Percorrendo todos os valores possíveis da enumeração
-		for (OrderStatus value : OrderStatus.values()) {
+		for (OrderStatus value : values()) {
 			if (value.getCode() == code) {
 				return value;
 			}
