@@ -67,7 +67,7 @@ public class OrderItem implements Serializable {
 		this.price = price;
 	}
 	
-	// Padrão Java EE: o método começa com get...
+	// Padrão Java EE: método com get... terá o valor incluído no JSON
 	public Double getSubTotal() {
 		return quantity * price;
 	}

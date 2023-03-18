@@ -29,7 +29,7 @@ public class User implements Serializable {  // Permite que o objeto seja transf
 	private String password;
 	
 	@JsonIgnore  // Impede a associação de mão dupla (looping infinito)
-	@OneToMany(mappedBy = "client")  // Mapeamento opcional -> Acessa o objeto usuário e os seus pedidos. Necessita do nome do atributo do outro lado da associação
+	@OneToMany(mappedBy = "client")  // Mapeamento opcional -> Acessa os pedidos do usuário. Necessita do nome do atributo do outro lado da associação
 	private List<Order> orders = new ArrayList<>();
 	
 	// Framework: necessita do construtor vazio
