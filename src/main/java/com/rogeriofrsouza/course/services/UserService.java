@@ -12,6 +12,8 @@ import com.rogeriofrsouza.course.repositories.UserRepository;
 import com.rogeriofrsouza.course.services.exceptions.DatabaseException;
 import com.rogeriofrsouza.course.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service  // Registra a classe como um componente do Spring, podendo ser injetada automaticamente pelo @Autowired
 public class UserService {
 
@@ -37,16 +39,22 @@ public class UserService {
 		try {
 			findById(id);
 			repository.deleteById(id);
-		} catch (DataIntegrityViolationException e) {
+		}
+		catch (DataIntegrityViolationException e) {
 			throw new DatabaseException(e.getMessage());  // Lança uma exceção de serviço personalizada
 		}
 	}
 	
 	public User update(Integer id, User obj) {
-		User entity = repository.getReferenceById(id);  // Entidade monitorada pelo JPA
-		updateData(entity, obj);  // Atualiza os dados do entity, baseado no obj
-		
-		return repository.save(entity);
+		try {
+			User entity = repository.getReferenceById(id);  // Entidade monitorada pelo JPA
+			updateData(entity, obj);  // Atualiza os dados do entity, baseado no obj
+			
+			return repository.save(entity);
+		}
+		catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void updateData(User entity, User obj) {
