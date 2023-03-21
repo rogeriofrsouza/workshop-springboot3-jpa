@@ -57,7 +57,7 @@ public class UserResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		
-		return ResponseEntity.noContent().build();  // Retornar uma resposta sem conteúdo, com o código HTTP específico: 204 
+		return ResponseEntity.noContent().build();  // Retornar uma resposta sem conteúdo, com o código HTTP específico: 204
 	}
 	
 	@PutMapping(value = "/{id}")
