@@ -3,7 +3,7 @@
 
 ## Sobre o projeto
 
-Esta é uma aplicação back-end para web desenvolvida durante o curso **Java COMPLETO 2023 Programação Orientada a Objetos +Projetos**, ministrado pelo professor [Nelio Alves](https://www.udemy.com/user/nelio-alves/ "Perfil do Nelio Alves na Udemy").
+Esta é uma aplicação back-end para web desenvolvida durante o curso [**Java COMPLETO 2023 Programação Orientada a Objetos +Projetos**](https://www.udemy.com/course/java-curso-completo/), ministrado pelo professor [Nelio Alves](https://www.udemy.com/user/nelio-alves/ "Perfil do Nelio Alves na Udemy").
 
 Este projeto consiste em uma API simples que implementa operações CRUD de dados de usuários, pedidos e produtos. Utiliza mapeamento objeto relacional para persistência de dados e retorna respostas em formato JSON.
 
