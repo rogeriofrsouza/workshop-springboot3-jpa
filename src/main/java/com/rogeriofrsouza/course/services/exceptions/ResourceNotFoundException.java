@@ -1,6 +1,6 @@
 package com.rogeriofrsouza.course.services.exceptions;
 
-// Exceção personalizada da camada de Service
+// Exceção personalizada da camada de serviço
 public class ResourceNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

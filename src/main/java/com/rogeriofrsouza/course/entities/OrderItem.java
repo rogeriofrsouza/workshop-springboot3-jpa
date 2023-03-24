@@ -34,7 +34,7 @@ public class OrderItem implements Serializable {
 	
 	// Métodos get() e set() da chave primária composta
 	
-	@JsonIgnore  // Java EE -> Corta a associação de mão dupla no pedido
+	@JsonIgnore  // Java EE -> Corta a associação de mão dupla
 	public Order getOrder() {
 		return id.getOrder();
 	}

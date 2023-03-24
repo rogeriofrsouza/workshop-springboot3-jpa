@@ -37,7 +37,7 @@ public class Order implements Serializable {
 	private Integer orderStatus;
 	
 	@ManyToOne  // Relação muitos para um - JPA transforma em Foreign Key
-	@JoinColumn(name = "client_id")  // Especifica o nome da FK
+	@JoinColumn(name = "client_id")  // Especifica o nome da coluna
 	private User client;
 	
 	@OneToMany(mappedBy = "id.order")
@@ -71,7 +71,7 @@ public class Order implements Serializable {
 	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
-	
+
 	public OrderStatus getOrderStatus() {
 		return OrderStatus.valueOf(orderStatus);
 	}
