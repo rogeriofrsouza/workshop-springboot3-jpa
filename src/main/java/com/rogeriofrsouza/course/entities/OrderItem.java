@@ -1,30 +1,33 @@
 package com.rogeriofrsouza.course.entities;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rogeriofrsouza.course.entities.pk.OrderItemPK;
-
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
+@NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "tb_order_item")
 public class OrderItem implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
-	@EmbeddedId  // Identifica uma chave primária composta, deve ser instanciada
-	private OrderItemPK id = new OrderItemPK();
+	@EmbeddedId
+	private final OrderItemPK id = new OrderItemPK();
 	
-	private Integer quantity;
-	private Double price;
+	private @Getter @Setter Integer quantity;
+	private @Getter @Setter Double price;
 	
-	public OrderItem() {
-	}
-
 	public OrderItem(Order order, Product product, Integer quantity, Double price) {
 		id.setOrder(order);
 		id.setProduct(product);
@@ -32,9 +35,7 @@ public class OrderItem implements Serializable {
 		this.price = price;
 	}
 	
-	// Métodos get() e set() da chave primária composta
-	
-	@JsonIgnore  // Java EE -> Corta a associação de mão dupla
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
@@ -51,42 +52,8 @@ public class OrderItem implements Serializable {
 		id.setProduct(product);
 	}
 
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-	
-	// Padrão Java EE: método com get... terá o valor incluído no JSON
 	public Double getSubTotal() {
 		return quantity * price;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		OrderItem other = (OrderItem) obj;
-		return Objects.equals(id, other.id);
-	}
-	
 }

@@ -1,33 +1,26 @@
 package com.rogeriofrsouza.course.entities.enums;
 
+import lombok.Getter;
+
+import java.util.Arrays;
+
+@Getter
 public enum OrderStatus {
 
-	// Controlando manualmente o código de cada valor
-	WAITING_PAYMENT(1),
-	PAID(2),
-	SHIPPED(3),
-	DELIVERED(4),
-	CANCELED(5);
-	
-	private int code;
-	
-	private OrderStatus(int code) {
-		this.code = code;
-	}
-	
-	public int getCode() {
-		return code;
-	}
-	
-	public static OrderStatus valueOf(int code) {
-		// Percorrendo todos os valores possíveis da enumeração
-		for (OrderStatus value : values()) {
-			if (value.getCode() == code) {
-				return value;
-			}
-		}
-		
-		throw new IllegalArgumentException("Invalid OrderStatus code");
-	}
-	
+    WAITING_PAYMENT(1),
+    PAID(2),
+    SHIPPED(3),
+    DELIVERED(4),
+    CANCELED(5);
+
+    private final int code;
+
+    OrderStatus(int code) {
+        this.code = code;
+    }
+
+    public static OrderStatus valueOf(int code) {
+        return Arrays.stream(values()).filter(i -> i.getCode() == code).findFirst().orElseThrow(() -> new IllegalArgumentException("Invalid OrderStatus code"));
+    }
+
 }
