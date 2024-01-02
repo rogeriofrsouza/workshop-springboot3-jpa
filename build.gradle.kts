@@ -1,6 +1,8 @@
 plugins {
     `java-library`
     `maven-publish`
+    id("org.springframework.boot") version "3.1.5"
+    id("com.google.cloud.tools.jib") version "3.4.0"
 }
 
 repositories {
