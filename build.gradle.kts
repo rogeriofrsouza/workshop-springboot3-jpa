@@ -20,6 +20,9 @@ dependencies {
     runtimeOnly(libs.org.postgresql.postgresql)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
     compileOnly(libs.org.projectlombok.lombok)
+    annotationProcessor(libs.org.projectlombok.lombok)
+    testCompileOnly(libs.org.projectlombok.lombok)
+    testAnnotationProcessor(libs.org.projectlombok.lombok)
 }
 
 group = "com.rogeriofrsouza"
